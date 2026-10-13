@@ -31,16 +31,65 @@
   <material name="white">
     <color rgba="1.0 1.0 1.0 1.0"/>
   </material>
+
+  <link name="world_origin"/>
+  <link name="base_x_link"/>
+  <link name="base_y_link"/>
+  <link name="base_z_link"/>
+  <link name="base_r_link"/>
+  <link name="base_t_link"/>
+
+  <!-- FLOATING BASE LIKE JOINTS-->
+  <joint name="base_x_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+        <limit effort="100.0" velocity="100.0" lower="-100" upper="100"/>
+    <child link="base_x_link"/>
+    <parent link="world_origin"/>
+  </joint>
+  <joint name="base_y_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+        <limit effort="100.0" velocity="100.0" lower="-100" upper="100"/>
+    <child link="base_y_link"/>
+    <parent link="base_x_link"/>
+  </joint>
+  <joint name="base_z_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+        <limit effort="100.0" velocity="100.0" lower="-100" upper="100"/>
+    <child link="base_z_link"/>
+    <parent link="base_y_link"/>
+  </joint>
+  <joint name="base_yaw_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <child link="base_r_link"/>
+    <parent link="base_z_link"/>
+  </joint>
+  <joint name="base_roll_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <child link="base_t_link"/>
+    <parent link="base_r_link"/>
+  </joint>
+  <joint name="base_pitch_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <child link="base_link"/>
+    <parent link="base_t_link"/>
+  </joint>
+
   <link name="base_link">
     <inertial>
-      <origin rpy="0 0 0" xyz="0.020452 3.5457E-06 0.01871"/>
+      <origin rpy="1.5708 0 0" xyz="0.020452 3.5457E-06 0.01871"/>
       <mass value="13.2"/>
       <inertia ixx="0.061855" ixy="-2.6029E-05" ixz="0.00081082" iyy="0.036934" iyz="-1.7269E-05" izz="0.071232"/>
     </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/base_link.STL"/>
+        <mesh filename="meshes/base_link.STL"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -125,7 +174,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/left_leg_1.STL"/>
+        <mesh filename="meshes/left_leg_1.STL"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -146,7 +195,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/left_leg_2.STL"/>
+        <mesh filename="meshes/left_leg_2.STL"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -167,7 +216,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/left_leg_3.STL"/>
+        <mesh filename="meshes/left_leg_3.STL"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -194,7 +243,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/left_leg_4.STL"/>
+        <mesh filename="meshes/left_leg_4.STL"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -221,7 +270,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/right_leg_1.STL"/>
+        <mesh filename="meshes/right_leg_1.STL"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -242,7 +291,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/right_leg_2.STL"/>
+        <mesh filename="meshes/right_leg_2.STL"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -263,7 +312,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/right_leg_3.STL"/>
+        <mesh filename="meshes/right_leg_3.STL"/>
       </geometry>
       <material name="black"/>
     </visual>
@@ -290,7 +339,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://tita_description/tita/meshes/right_leg_4.STL"/>
+        <mesh filename="meshes/right_leg_4.STL"/>
       </geometry>
       <material name="black"/>
     </visual>

@@ -1,4 +1,5 @@
 function WBJ = compute_WBJ(qL, qR, p)
+    % WBJ computation according to Eq. (9)
     l1 = p.l1;
     l2 = p.l2;
     
@@ -30,14 +31,15 @@ function WBJ = compute_WBJ(qL, qR, p)
     WBJ(3,5) = -(l2*sin(th_aR + th_kR))/2;
     WBJ(3,6) = 0;
 
-    WBJ(4,1) = -(l1*sin(th_aL) + l2*sin(th_aL + th_kL));
-    WBJ(4,2) = -(l2*sin(th_aL + th_kL));
+    % !!this row is wrong in the paper (wrong signs)!!
+    WBJ(4,1) = (l1*sin(th_aL) + l2*sin(th_aL + th_kL));
+    WBJ(4,2) = (l2*sin(th_aL + th_kL));
     WBJ(4,3) = 0;
-    WBJ(4,4) = (l1*sin(th_aR) + l2*sin(th_aR + th_kR));
-    WBJ(4,5) = (l2*sin(th_aR + th_kR));
+    WBJ(4,4) = -(l1*sin(th_aR) + l2*sin(th_aR + th_kR));
+    WBJ(4,5) = -(l2*sin(th_aR + th_kR));
     WBJ(4,6) = 0;
 
     WBJ(5,:) = 0.5 * ones(1,6);
 
-    WBJ(6,:) = [1 -1 1 -1 1 -1];
+    WBJ(6,:) = [1 1 1 -1 -1 -1];
 end
